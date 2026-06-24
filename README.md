@@ -1,0 +1,43 @@
+# lunchit-cli
+
+Simple CLI for uploading receipts to [Lunchit](https://web.lunchit.com).
+
+## Setup
+
+```bash
+bun install
+```
+
+## Usage
+
+Log in (credentials are stored in `~/.lunchit-cli/config.json`):
+
+```bash
+bun start login --email you@example.com --password secret
+```
+
+Upload a receipt image:
+
+```bash
+bun start upload ./receipt.png
+```
+
+Optional receipt metadata:
+
+```bash
+bun start upload ./receipt.png \
+  --date 2026-06-24 \
+  --store-name "billa ag" \
+  --city wien \
+  --street "am europlatz 2" \
+  --zip 1120
+```
+
+Other commands:
+
+```bash
+bun start status
+bun start logout
+```
+
+You can also set `LUNCHIT_EMAIL` and `LUNCHIT_PASSWORD` instead of passing flags.
