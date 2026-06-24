@@ -10,7 +10,8 @@
     "start": "bun run index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "citty": "^0.2.2"
   },
   "peerDependencies": {
     "typescript": "^5"

@@ -40,4 +40,6 @@ bun start status
 bun start logout
 ```
 
+Use `--help` on any command for usage details, e.g. `bun start upload --help`.
+
 You can also set `LUNCHIT_EMAIL` and `LUNCHIT_PASSWORD` instead of passing flags.
