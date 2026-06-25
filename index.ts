@@ -11,6 +11,7 @@ const main = defineCommand({
     upload: () => import("./src/commands/upload.ts").then((m) => m.default),
     logout: () => import("./src/commands/logout.ts").then((m) => m.default),
     status: () => import("./src/commands/status.ts").then((m) => m.default),
+    receipts: () => import("./src/commands/receipts.ts").then((m) => m.default),
   },
 });
 

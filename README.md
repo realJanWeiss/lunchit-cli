@@ -1,6 +1,6 @@
 # lunchit-cli
 
-Simple CLI for uploading receipts to [Lunchit](https://web.lunchit.com).
+Simple CLI for uploading and managing receipts on [Lunchit](https://web.lunchit.com).
 
 ## Setup
 
@@ -31,6 +31,18 @@ bun start upload ./receipt.png \
   --city wien \
   --street "am europlatz 2" \
   --zip 1120
+```
+
+List receipts for the current month:
+
+```bash
+bun start receipts
+```
+
+Fetch receipts for a specific year and month:
+
+```bash
+bun start receipts --year 2026 --month 6
 ```
 
 Other commands:

@@ -18,6 +18,16 @@ type UploadDocumentResponse = {
   receiptId: string;
 };
 
+export type ReceiptGroup = {
+  date: string;
+  groupRejected: boolean;
+  receipts: ReceiptDetails[];
+  receiptsCount: number;
+  refundAmount: number;
+  submittedAmount: number;
+  withinMaxRefundDays: boolean;
+};
+
 export type ReceiptDetails = {
   addonItems: unknown[];
   city: string;
@@ -126,4 +136,19 @@ export async function submitReceipt(
   });
 
   return parseJsonResponse<ReceiptDetails>(response);
+}
+
+export async function fetchReceiptGroups(
+  sessionToken: string,
+  year: number,
+  month: number,
+): Promise<ReceiptGroup[]> {
+  const response = await fetch(`${API_BASE}/receipt/groups/${year}/${month}`, {
+    headers: {
+      ...DEFAULT_HEADERS,
+      cookie: `sessionToken=${sessionToken}`,
+    },
+  });
+
+  return parseJsonResponse<ReceiptGroup[]>(response);
 }
