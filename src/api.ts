@@ -45,6 +45,20 @@ export type ReceiptDetails = {
   zipCode: string;
 };
 
+export const RECEIPT_TYPE_RESTAURANT = 2;
+export const RECEIPT_TYPE_SUPERMARKET = 3;
+
+export function receiptCategory(typeId: number): string {
+  switch (typeId) {
+    case RECEIPT_TYPE_RESTAURANT:
+      return "restaurant";
+    case RECEIPT_TYPE_SUPERMARKET:
+      return "supermarket";
+    default:
+      return String(typeId);
+  }
+}
+
 async function parseJsonResponse<T>(response: Response): Promise<T> {
   const body = await response.text();
 
@@ -98,6 +112,7 @@ export async function uploadReceiptDocument(
 export type SubmitReceiptInput = {
   receiptId: string;
   date: string;
+  restaurant?: boolean;
   storeName?: string;
   city?: string;
   streetAndNumber?: string;
@@ -120,7 +135,7 @@ export async function submitReceipt(
     storeName: input.storeName ?? "",
     streetAndNumber: input.streetAndNumber ?? "",
     submittedAmount: 2,
-    typeId: 3,
+    typeId: input.restaurant ? RECEIPT_TYPE_RESTAURANT : RECEIPT_TYPE_SUPERMARKET,
     withinMaxRefundDays: true,
     zipCode: input.zipCode ?? "",
   };

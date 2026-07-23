@@ -33,6 +33,12 @@ bun start upload ./receipt.png \
   --zip 1120
 ```
 
+Submit as a restaurant receipt (defaults to supermarket):
+
+```bash
+bun start upload ./receipt.png --restaurant
+```
+
 List receipts for the current month:
 
 ```bash

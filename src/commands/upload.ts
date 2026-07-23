@@ -38,6 +38,11 @@ export default defineCommand({
       type: "string",
       description: "Zip code",
     },
+    restaurant: {
+      type: "boolean",
+      description: "Submit as a restaurant receipt (default: supermarket)",
+      default: false,
+    },
   },
   async run({ args }) {
     const session = await loadSession();
@@ -52,6 +57,7 @@ export default defineCommand({
     const receipt = await submitReceipt(session.sessionToken, {
       receiptId: upload.receiptId,
       date: args.date,
+      restaurant: args.restaurant,
       storeName: args.storeName,
       city: args.city,
       streetAndNumber: args.street,

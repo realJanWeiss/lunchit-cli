@@ -1,6 +1,6 @@
 import { defineCommand } from "citty";
 
-import { fetchReceiptGroups } from "../api.ts";
+import { fetchReceiptGroups, receiptCategory } from "../api.ts";
 import { loadSession } from "../config.ts";
 import { currentMonth, currentYear, formatTable, twoLetterWeekday } from "../utils.ts";
 
@@ -46,12 +46,16 @@ export default defineCommand({
       return;
     }
 
-    const rows = groups.map((group) => [
-      twoLetterWeekday(group.date),
-      group.date,
-      group.refundAmount.toFixed(2),
-    ]);
+    const rows = groups.map((group) => {
+      const typeId = group.receipts[0]?.typeId ?? 0;
+      return [
+        twoLetterWeekday(group.date),
+        group.date,
+        receiptCategory(typeId),
+        group.refundAmount.toFixed(2),
+      ];
+    });
 
-    console.log(formatTable(["Day", "Date", "Refund"], rows, { alignRight: [2] }));
+    console.log(formatTable(["Day", "Date", "Category", "Refund"], rows, { alignRight: [3] }));
   },
 });
