@@ -1,4 +1,4 @@
-# lunchit-cli
+# lunchit-cli (unofficial)
 
 Simple CLI for uploading and managing receipts on [Lunchit](https://web.lunchit.com).
 
