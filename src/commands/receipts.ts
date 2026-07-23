@@ -1,7 +1,7 @@
 import { defineCommand } from "citty";
 
 import { fetchReceiptGroups, receiptCategory } from "../api.ts";
-import { loadSession } from "../config.ts";
+import { ensureValidSession } from "../session.ts";
 import { currentMonth, currentYear, formatTable, twoLetterWeekday } from "../utils.ts";
 
 export default defineCommand({
@@ -24,10 +24,7 @@ export default defineCommand({
     },
   },
   async run({ args }) {
-    const session = await loadSession();
-    if (!session) {
-      throw new Error("Not logged in. Run `lunchit login` first.");
-    }
+    const session = await ensureValidSession();
 
     const year = Number.parseInt(args.year, 10);
     const month = Number.parseInt(args.month, 10);

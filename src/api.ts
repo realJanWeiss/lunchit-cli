@@ -84,6 +84,18 @@ export async function login(email: string, password: string): Promise<LoginRespo
   return parseJsonResponse<LoginResponse>(response);
 }
 
+export async function refreshTokens(refreshToken: string): Promise<LoginResponse> {
+  const response = await fetch(`${API_BASE}/refreshTokens`, {
+    method: "GET",
+    headers: {
+      ...DEFAULT_HEADERS,
+      cookie: `refreshToken=${refreshToken}`,
+    },
+  });
+
+  return parseJsonResponse<LoginResponse>(response);
+}
+
 export async function uploadReceiptDocument(
   sessionToken: string,
   filePath: string,

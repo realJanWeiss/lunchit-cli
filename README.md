@@ -59,13 +59,6 @@ Fetch receipts for a specific year and month:
 bun start receipts --year 2026 --month 6
 ```
 
-Other commands:
-
-```bash
-bun start status
-bun start logout
-```
-
 Use `--help` on any command for usage details, e.g. `bun start upload --help`.
 
 You can also set `LUNCHIT_EMAIL` and `LUNCHIT_PASSWORD` instead of passing flags.

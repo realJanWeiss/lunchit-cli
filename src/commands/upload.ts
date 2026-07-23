@@ -1,7 +1,7 @@
 import { defineCommand } from "citty";
 
 import { submitReceipt, uploadReceiptDocument } from "../api.ts";
-import { loadSession } from "../config.ts";
+import { ensureValidSession } from "../session.ts";
 import { todayIsoDate } from "../utils.ts";
 
 export default defineCommand({
@@ -45,10 +45,7 @@ export default defineCommand({
     },
   },
   async run({ args }) {
-    const session = await loadSession();
-    if (!session) {
-      throw new Error("Not logged in. Run `lunchit login` first.");
-    }
+    const session = await ensureValidSession();
 
     console.log(`Uploading ${args.image}...`);
     const upload = await uploadReceiptDocument(session.sessionToken, args.image);
