@@ -2,6 +2,14 @@
 
 Simple CLI for uploading and managing receipts on [Lunchit](https://web.lunchit.com).
 
+command | description
+--- | ---
+login | Log in to Lunchit
+upload | Upload a receipt image
+logout | Clear stored credentials
+status | Show login status
+receipts | List receipts for a month
+
 ## Setup
 
 ```bash
