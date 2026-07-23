@@ -7,7 +7,8 @@
     "lunchit": "./index.ts"
   },
   "scripts": {
-    "start": "bun run index.ts"
+    "start": "bun run index.ts",
+    "test": "bun test"
   },
   "devDependencies": {
     "@types/bun": "latest",

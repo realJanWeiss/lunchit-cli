@@ -1,20 +1,7 @@
 import { expect, test } from "bun:test";
 
 import { describeSessionStatus, getTokenExpiry, isTokenExpired } from "./session.ts";
-
-function jwt(payload: Record<string, unknown>): string {
-  const header = Buffer.from(JSON.stringify({ alg: "none", typ: "JWT" })).toString("base64url");
-  const body = Buffer.from(JSON.stringify(payload)).toString("base64url");
-  return `${header}.${body}.signature`;
-}
-
-function futureExp(secondsFromNow: number): number {
-  return Math.floor(Date.now() / 1000) + secondsFromNow;
-}
-
-function pastExp(secondsAgo: number): number {
-  return Math.floor(Date.now() / 1000) - secondsAgo;
-}
+import { futureExp, jwt, pastExp } from "./test-helpers.ts";
 
 test("getTokenExpiry reads exp from JWT payload", () => {
   const exp = 1782822812;
